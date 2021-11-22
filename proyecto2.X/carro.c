@@ -27,3 +27,28 @@
 #include <stdint.h>
 #include <stdio.h>
 #include <xc.h>
+
+// Variables
+
+
+// Funciones
+void setup(void);
+
+// Interrupciones
+
+
+// Ciclo Principal
+void main (void){
+    setup();
+    while(1){
+    
+    }
+}
+
+
+// Set up
+void setup(void){
+
+
+}
+

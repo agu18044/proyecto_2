@@ -50,8 +50,55 @@ void main (void){
 void setup(void){
     ANSEL = 0b00000111;
     ANSELH = 0;
-    
+    //
     TRISA = 0x0F;
+    //
+    TRISBbits.TRISB1 = 1;
+    TRISBbits.TRISB2 = 1;
+    TRISBbits.TRISB3 = 1;
+    TRISBbits.TRISB4 = 1;
+    //
+    TRISCbits.TRISC0 = 0;
+    TRISCbits.TRISC1 = 0;
+    TRISCbits.TRISC2 = 0;
+    TRISCbits.TRISC6 = 0;
+    TRISCbits.TRISC7 = 1;
+    //
+    TRISDbits.TRISD0 = 0;
+    TRISDbits.TRISD1 = 0;
+    TRISDbits.TRISD4 = 0;
+    TRISDbits.TRISD5 = 0;
+    TRISDbits.TRISD6 = 0;
+    TRISDbits.TRISD7 = 0;
+    //
+    PORTA = 0x00;
+    PORTB = 0x00;
+    PORTC = 0x00;
+    PORTD = 0x00;
+    PORTE = 0x00;
+    //
+    OSCCONbits.IRCF2 = 1;
+    OSCCONbits.IRCF1 = 1;
+    OSCCONbits.IRCF0 = 1;   //8 MHz
+    OSCCONbits.SCS = 1;
+    //
+    OPTION_REGbits.nRBPU = 0;
+    WPUB = 0b00011110;
+    IOCBbits.IOCB1 = 1;
+    IOCBbits.IOCB2 = 1;   
+    IOCBbits.IOCB3 = 1;
+    IOCBbits.IOCB4 = 1;
+    //
+    ADCON1bits.ADFM = 0;       // Justificado a la izquierda
+    ADCON1bits.VCFG0 = 0;      // Vref en VSS y VDD 
+    ADCON1bits.VCFG1 = 0;   
+    ADCON0bits.ADCS = 0b10;    //oscilador FOSC/32
+    ADCON0bits.ADON = 1;       
+    ADCON0bits.CHS = 0;        // Canal 0
+    __delay_us(50); 
+    //
+    
+    
     
     
 }

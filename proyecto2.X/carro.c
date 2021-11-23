@@ -118,6 +118,13 @@ void setup(void){
     TRISCbits.TRISC2 = 0;          
     TRISCbits.TRISC1 = 0;
     //
+    INTCONbits.GIE = 1;   //globales
+    INTCONbits.PEIE = 1;  //perifericos
+    PIE1bits.ADIE = 1;        
+    PIR1bits.ADIF = 0;      
+    INTCONbits.RBIF = 1;
+    INTCONbits.RBIE = 1;
+    //
     
     
     

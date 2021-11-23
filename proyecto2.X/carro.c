@@ -57,13 +57,13 @@ void setup(void){
     TRISBbits.TRISB2 = 1;
     TRISBbits.TRISB3 = 1;
     TRISBbits.TRISB4 = 1;
-    //
+    //SALIDAS PORTC
     TRISCbits.TRISC0 = 0;
     TRISCbits.TRISC1 = 0;
     TRISCbits.TRISC2 = 0;
     TRISCbits.TRISC6 = 0;
     TRISCbits.TRISC7 = 1;
-    //
+    //SALIDAS PORTD
     TRISDbits.TRISD0 = 0;
     TRISDbits.TRISD1 = 0;
     TRISDbits.TRISD4 = 0;
@@ -76,19 +76,19 @@ void setup(void){
     PORTC = 0x00;
     PORTD = 0x00;
     PORTE = 0x00;
-    //
+    //INTR CLK
     OSCCONbits.IRCF2 = 1;
     OSCCONbits.IRCF1 = 1;
     OSCCONbits.IRCF0 = 1;   //8 MHz
     OSCCONbits.SCS = 1;
-    //
+    //INT PULLUP PORTB
     OPTION_REGbits.nRBPU = 0;
     WPUB = 0b00011110;
     IOCBbits.IOCB1 = 1;
     IOCBbits.IOCB2 = 1;   
     IOCBbits.IOCB3 = 1;
     IOCBbits.IOCB4 = 1;
-    //
+    //ADC
     ADCON1bits.ADFM = 0;       // Justificado a la izquierda
     ADCON1bits.VCFG0 = 0;      // Vref en VSS y VDD 
     ADCON1bits.VCFG1 = 0;   
@@ -96,7 +96,7 @@ void setup(void){
     ADCON0bits.ADON = 1;       
     ADCON0bits.CHS = 0;        // Canal 0
     __delay_us(50); 
-    //
+    //PWM
     TRISCbits.TRISC2 = 1;           // CCP como input
     TRISCbits.TRISC1 = 1; 
     PR2 = 249;                      // Periodo
@@ -109,7 +109,7 @@ void setup(void){
     CCP1CONbits.DC1B = 0;
     CCP2CONbits.DC2B0 = 0;
     CCP2CONbits.DC2B1 = 0;
-    //
+    //TMR2
     PIR1bits.TMR2IF = 0;       //apaga la bandera
     T2CONbits.T2CKPS = 0b11;   //prescaler 1:16
     T2CONbits.TMR2ON = 1;   
@@ -117,17 +117,29 @@ void setup(void){
     PIR1bits.TMR2IF = 0;
     TRISCbits.TRISC2 = 0;          
     TRISCbits.TRISC1 = 0;
-    //
+    //UART
+    TXSTAbits.SYNC = 0;
+    TXSTAbits.BRGH = 1;
+    BAUDCTLbits.BRG16 = 1;
+    
+    SPBRG = 210;
+    SPBRGH = 0;
+    
+    RCSTAbits.SPEN = 1;
+    RCSTAbits.RX9 = 0;
+    RCSTAbits.CREN = 1;
+    
+    TXSTAbits.TXEN = 1;
+    
+    PIR1bits.RCIF = 0; //bandera RX
+    PIR1bits.TXIF = 0; //bandera TX
+    //INT
     INTCONbits.GIE = 1;   //globales
     INTCONbits.PEIE = 1;  //perifericos
     PIE1bits.ADIE = 1;        
     PIR1bits.ADIF = 0;      
     INTCONbits.RBIF = 1;
     INTCONbits.RBIE = 1;
-    //
-    
-    
-    
-    
+       
 }
 

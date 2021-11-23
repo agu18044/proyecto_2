@@ -2,8 +2,6 @@
  * Proyecto 2 - Carrito
  * Diego Aguilar, 18044
  * 
- 
- 
  */
 
 

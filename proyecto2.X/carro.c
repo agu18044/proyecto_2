@@ -48,7 +48,11 @@ void main (void){
 
 // Set up
 void setup(void){
-
-
+    ANSEL = 0b00000111;
+    ANSELH = 0;
+    
+    TRISA = 0x0F;
+    
+    
 }
 

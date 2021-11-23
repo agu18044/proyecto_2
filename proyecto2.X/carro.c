@@ -97,6 +97,27 @@ void setup(void){
     ADCON0bits.CHS = 0;        // Canal 0
     __delay_us(50); 
     //
+    TRISCbits.TRISC2 = 1;           // CCP como input
+    TRISCbits.TRISC1 = 1; 
+    PR2 = 249;                      // Periodo
+    CCP1CONbits.P1M = 0;            // Modo de PWM
+    CCP1CONbits.CCP1M = 0b1100;
+    CCPR1L = 0x0f;                  // duty cycle
+    CCP2CONbits.CCP2M = 0b1100;
+    CCPR2L = 0x0f;
+    
+    CCP1CONbits.DC1B = 0;
+    CCP2CONbits.DC2B0 = 0;
+    CCP2CONbits.DC2B1 = 0;
+    //
+    PIR1bits.TMR2IF = 0;       //apaga la bandera
+    T2CONbits.T2CKPS = 0b11;   //prescaler 1:16
+    T2CONbits.TMR2ON = 1;   
+    while(PIR1bits.TMR2IF == 0);    
+    PIR1bits.TMR2IF = 0;
+    TRISCbits.TRISC2 = 0;          
+    TRISCbits.TRISC1 = 0;
+    //
     
     
     

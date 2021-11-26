@@ -103,17 +103,38 @@ void __interrupt() isr(void){
             bitb2();
             __delay_ms(500);
             printf("\r Avanzando \r");
+            PORTDbits.RD0 = 1;
+            PORTDbits.RD4 = 1;
+            PORTDbits.RD5 = 1;
+            PORTDbits.RD6 = 0;
+            PORTDbits.RD7 = 0;
+            printf("------------------------------------------");
+            printf("\r Presione s para retroceder \r");
+            printf("\r Presione a para girar a la izquierda \r");
+            printf("\r Presione d para girar a la derecha \r");
         }
-        if (RCREG == ''){ 
+        if (RCREG == 'a'){
+            bitb1();
+            PORTDbits.RD5 = 0;
+            PORTDbits.RD6 = 1;
+            PORTDbits.RD4 = 1;
+            PORTDbits.RD7 = 0;  
+            printf("\r Girando a la izquierda \r");
+            __delay_ms(300);
+            printf("------------------------------------------");
+            printf("\r Precione s para retroceder \r");
+            printf("\r Presione a para girar a la izquierda \r");
+            printf("\r Presione d para girar a la derecha \r");
         }
-        if (RCREG == ''){ 
+        
+        if (RCREG == 's'){ 
         }
         if (RCREG == ''){ 
         }
         else{ 
             NULL;//seguridad para que el usuario no ponga otras opciones  //seguridad para que el usuario no ponga otras opciones  
-        }  
-    } 
+        } 
+       } 
         
     }
 

@@ -2826,7 +2826,7 @@ void __attribute__((picinterrupt(("")))) isr(void){
             bitb2();
             _delay((unsigned long)((500)*(8000000/4000.0)));
             printf("\r Avanzando \r");
-            PORTDbits.RD0 = 1;
+            PORTDbits.RD1 = 1;
             PORTDbits.RD1 = 0;
             PORTDbits.RD4 = 1;
             PORTDbits.RD5 = 1;

@@ -104,6 +104,7 @@ void __interrupt() isr(void){
             __delay_ms(500);
             printf("\r Avanzando \r");
             PORTDbits.RD0 = 1;
+            PORTDbits.RD1 = 0;
             PORTDbits.RD4 = 1;
             PORTDbits.RD5 = 1;
             PORTDbits.RD6 = 0;
@@ -126,9 +127,9 @@ void __interrupt() isr(void){
             printf("\r Presione a para girar a la izquierda \r");
             printf("\r Presione d para girar a la derecha \r");
         }
-        
         if (RCREG == 's'){
-            PORTDbits.RD0 = 1;
+            PORTDbits.RD0 = 0;
+            PORTDbits.RD1 = 1;
             PORTDbits.RD6 = 1;
             PORTDbits.RD7 = 1;
             PORTDbits.RD4 = 0;

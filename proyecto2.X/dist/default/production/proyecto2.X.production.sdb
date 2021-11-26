@@ -16,18 +16,18 @@
 [v ___memcpyee __memcpyee `(v  1 e 1 0 ]
 "48 C:\Users\Usuario Dell\Documents\.MICROs\proyecto_2\proyecto_2\proyecto2.X\carro.c
 [v _isr isr `II(v  1 e 1 0 ]
-"166
+"167
 [v _main main `(v  1 e 1 0 ]
-"188
+"189
 [v _putch putch `(v  1 e 1 0 ]
 [v i1_putch putch `(v  1 e 1 0 ]
-"195
+"196
 [v _setup setup `(v  1 e 1 0 ]
-"290
+"291
 [v _bitb1 bitb1 `(v  1 e 1 0 ]
-"297
+"298
 [v _bitb2 bitb2 `(v  1 e 1 0 ]
-"304
+"305
 [v _bitb3 bitb3 `(v  1 e 1 0 ]
 "166 C:/Program Files (x86)/Microchip/MPLABX/v5.40/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h
 [v _PORTA PORTA `VEuc  1 e 1 @5 ]
@@ -358,15 +358,15 @@
 [v _TXIF TXIF `VEb  1 e 0 @100 ]
 "30 C:\Users\Usuario Dell\Documents\.MICROs\proyecto_2\proyecto_2\proyecto2.X\carro.c
 [v _value value `uc  1 e 1 0 ]
-"166
+"167
 [v _main main `(v  1 e 1 0 ]
 {
-"186
+"187
 } 0
-"195
+"196
 [v _setup setup `(v  1 e 1 0 ]
 {
-"288
+"289
 } 0
 "477 C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\doprnt.c
 [v _printf printf `(i  1 e 2 0 ]
@@ -379,18 +379,18 @@
 [v printf@f f `*.25DCuc  1 p 2 8 ]
 "1567
 } 0
-"188 C:\Users\Usuario Dell\Documents\.MICROs\proyecto_2\proyecto_2\proyecto2.X\carro.c
+"189 C:\Users\Usuario Dell\Documents\.MICROs\proyecto_2\proyecto_2\proyecto2.X\carro.c
 [v _putch putch `(v  1 e 1 0 ]
 {
 [v putch@data data `uc  1 a 1 wreg ]
 [v putch@data data `uc  1 a 1 wreg ]
 [v putch@data data `uc  1 a 1 7 ]
-"192
+"193
 } 0
 "48
 [v _isr isr `II(v  1 e 1 0 ]
 {
-"161
+"162
 } 0
 "477 C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\doprnt.c
 [v i1_printf printf `(i  1 e 2 0 ]
@@ -403,26 +403,26 @@
 [v i1printf@f f `*.25DCuc  1 p 2 1 ]
 "1567
 } 0
-"188 C:\Users\Usuario Dell\Documents\.MICROs\proyecto_2\proyecto_2\proyecto2.X\carro.c
+"189 C:\Users\Usuario Dell\Documents\.MICROs\proyecto_2\proyecto_2\proyecto2.X\carro.c
 [v i1_putch putch `(v  1 e 1 0 ]
 {
 [v i1putch@data data `uc  1 a 1 wreg ]
 [v i1putch@data data `uc  1 a 1 wreg ]
 [v i1putch@data data `uc  1 a 1 0 ]
-"192
+"193
 } 0
-"304
+"305
 [v _bitb3 bitb3 `(v  1 e 1 0 ]
 {
-"309
+"310
 } 0
-"297
+"298
 [v _bitb2 bitb2 `(v  1 e 1 0 ]
 {
-"302
+"303
 } 0
-"290
+"291
 [v _bitb1 bitb1 `(v  1 e 1 0 ]
 {
-"295
+"296
 } 0

@@ -127,9 +127,31 @@ void __interrupt() isr(void){
             printf("\r Presione d para girar a la derecha \r");
         }
         
-        if (RCREG == 's'){ 
+        if (RCREG == 's'){
+            PORTDbits.RD0 = 1;
+            PORTDbits.RD6 = 1;
+            PORTDbits.RD7 = 1;
+            PORTDbits.RD4 = 0;
+            PORTDbits.RD5 = 0;
+            printf("\r Retrocediendo \r");
+            __delay_ms(100);
+            printf("------------------------------------------");
+            printf("\r Apache w para avanzar \r");
+            printf("\r Apache a para girar a la izquierda \r");
+            printf("\r Apache d para girar derecha \r");
         }
-        if (RCREG == ''){ 
+        if (RCREG == 'd'){
+            bit3();
+            PORTDbits.RD5 = 1;
+            PORTDbits.RD6 = 0;
+            PORTDbits.RD4 = 0;
+            PORTDbits.RD7 = 1;
+            printf("\r Girando a la derecha \r");
+             __delay_ms(300);
+            printf("------------------------------------------");
+            printf("\r Precione s para retroceder \r");
+            printf("\r Apache a para girar a la izquierda \r");
+            printf("\r Apache d para girar derecha \r");    
         }
         else{ 
             NULL;//seguridad para que el usuario no ponga otras opciones  //seguridad para que el usuario no ponga otras opciones  

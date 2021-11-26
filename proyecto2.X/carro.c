@@ -165,7 +165,27 @@ void setup(void){
     PIE1bits.ADIE = 1;        
     PIR1bits.ADIF = 0;      
     INTCONbits.RBIF = 1;
-    INTCONbits.RBIE = 1;
-       
+    INTCONbits.RBIE = 1;       
 }
+
+void bitb1 (void){
+        PORTCbits.RC0 = 1;
+        __delay_ms(1);
+        PORTCbits.RC0 = 0;
+        __delay_ms(19);
+    }
+    
+void bitb2 (void){
+        PORTCbits.RC0 = 1;
+        __delay_ms(1.5);
+        PORTCbits.RC0 = 0;
+        __delay_ms(18.5);
+    }
+
+void bitb3 (void){
+        PORTCbits.RC0 = 1;
+        __delay_ms(2);
+        PORTCbits.RC0 = 0;
+        __delay_ms(18);
+    }
 

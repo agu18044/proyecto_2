@@ -141,7 +141,8 @@ void handleMessage3(AdafruitIO_Data *data) {
     Serial.print("LED AZUL ON");
     }
    
-   if(data->toString() == "0"){   //apaga el LED 
+   if(data->toString() == 
+   "0"){   //apaga el LED 
     digitalWrite(LED_3, LOW);  
     Serial.print("LED AZUL OFF");
     }

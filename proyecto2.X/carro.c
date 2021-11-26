@@ -141,7 +141,7 @@ void __interrupt() isr(void){
             printf("\r Apache d para girar derecha \r");
         }
         if (RCREG == 'd'){
-            bit3();
+            bitb3();
             PORTDbits.RD5 = 1;
             PORTDbits.RD6 = 0;
             PORTDbits.RD4 = 0;

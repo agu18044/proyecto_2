@@ -2750,22 +2750,169 @@ extern __bank0 __bit __timeout;
 
 
 
-
+char value;
+char dato;
+char localidad;
+char lec1;
+char lec2;
+char lec3;
+char lec4;
+char lec5;
+char lec_pwm1;
+char lec_pwm2;
 
 
 void setup(void);
+void bitb1(void);
+void bitb2(void);
+void bitb3(void);
 
+
+void __attribute__((picinterrupt(("")))) isr(void){
+
+    if(PIR1bits.ADIF == 1){
+        if(ADCON0bits.CHS == 0){
+            CCPR1L = (ADRESH >> 1) + 124;
+        }
+        else if(ADCON0bits.CHS == 1){
+            CCPR2L = (ADRESH >> 1) + 124;
+        }
+        else if (ADCON0bits.CHS == 2){
+               value = ADRESH;
+            if (value <= 85){
+                bitb1();
+                 }
+           if ((value <= 170)&&(value >= 86)){
+                bitb2();
+                 }
+            if (value >= 171){
+                bitb3();
+                 }
+        }
+           PIR1bits.ADIF = 0;
+    }
+
+    if (RBIF == 1){
+        if (PORTBbits.RB1 == 0)
+        {
+            PORTDbits.RD0 = 0;
+            PORTDbits.RD4 = 1;
+            PORTDbits.RD5 = 1;
+        }
+        else if (PORTBbits.RB1 == 1)
+        {
+            PORTDbits.RD0 = 1;
+            PORTDbits.RD4 = 0;
+            PORTDbits.RD5 = 0;
+        }
+        if (PORTBbits.RB2 == 0)
+        {
+            PORTDbits.RD1 = 0;
+            PORTDbits.RD6 = 1;
+            PORTDbits.RD7 = 1;
+        }
+        else if (PORTBbits.RB2 == 1)
+        {
+            PORTDbits.RD1 = 1;
+            PORTDbits.RD6 = 0;
+            PORTDbits.RD7 = 0;
+        }
+        INTCONbits.RBIF = 0;
+
+    }
+
+    if (RCIF == 1) {
+        if (RCREG == 'w'){
+            bitb2();
+            _delay((unsigned long)((500)*(8000000/4000.0)));
+            printf("\r Avanzando \r");
+            PORTDbits.RD0 = 1;
+            PORTDbits.RD4 = 1;
+            PORTDbits.RD5 = 1;
+            PORTDbits.RD6 = 0;
+            PORTDbits.RD7 = 0;
+            printf("------------------------------------------");
+            printf("\r Presione s para retroceder \r");
+            printf("\r Presione a para girar a la izquierda \r");
+            printf("\r Presione d para girar a la derecha \r");
+        }
+        if (RCREG == 'a'){
+            bitb1();
+            PORTDbits.RD5 = 0;
+            PORTDbits.RD6 = 1;
+            PORTDbits.RD4 = 1;
+            PORTDbits.RD7 = 0;
+            printf("\r Girando a la izquierda \r");
+            _delay((unsigned long)((300)*(8000000/4000.0)));
+            printf("------------------------------------------");
+            printf("\r Precione s para retroceder \r");
+            printf("\r Presione a para girar a la izquierda \r");
+            printf("\r Presione d para girar a la derecha \r");
+        }
+
+        if (RCREG == 's'){
+            PORTDbits.RD0 = 1;
+            PORTDbits.RD6 = 1;
+            PORTDbits.RD7 = 1;
+            PORTDbits.RD4 = 0;
+            PORTDbits.RD5 = 0;
+            printf("\r Retrocediendo \r");
+            _delay((unsigned long)((100)*(8000000/4000.0)));
+            printf("------------------------------------------");
+            printf("\r Apache w para avanzar \r");
+            printf("\r Apache a para girar a la izquierda \r");
+            printf("\r Apache d para girar derecha \r");
+        }
+        if (RCREG == 'd'){
+            bitb3();
+            PORTDbits.RD5 = 1;
+            PORTDbits.RD6 = 0;
+            PORTDbits.RD4 = 0;
+            PORTDbits.RD7 = 1;
+            printf("\r Girando a la derecha \r");
+             _delay((unsigned long)((300)*(8000000/4000.0)));
+            printf("------------------------------------------");
+            printf("\r Precione s para retroceder \r");
+            printf("\r Apache a para girar a la izquierda \r");
+            printf("\r Apache d para girar derecha \r");
+        }
+        else{
+            (0);
+        }
+       }
+
+    }
 
 
 
 
 void main (void){
     setup();
-    while(1){
+    ADCON0bits.GO = 1;
+    PORTDbits.RD1 = 1;
+    printf("\r Presione w para avanzar \r");
 
+    while(1){
+        if (ADCON0bits.GO == 0){
+            if(ADCON0bits.CHS == 0){
+                ADCON0bits.CHS =1;
+            }
+            else if (ADCON0bits.CHS == 1){
+                ADCON0bits.CHS = 2;
+            }
+            else
+                ADCON0bits.CHS = 0;
+            _delay((unsigned long)((50)*(8000000/4000000.0)));
+            ADCON0bits.GO = 1;
+        }
     }
 }
 
+void putch(char data){
+    while(TXIF == 0);
+    TXREG = data;
+    return;
+}
 
 
 void setup(void){
@@ -2861,5 +3008,25 @@ void setup(void){
     PIR1bits.ADIF = 0;
     INTCONbits.RBIF = 1;
     INTCONbits.RBIE = 1;
-
 }
+
+void bitb1 (void){
+        PORTCbits.RC0 = 1;
+        _delay((unsigned long)((1)*(8000000/4000.0)));
+        PORTCbits.RC0 = 0;
+        _delay((unsigned long)((19)*(8000000/4000.0)));
+    }
+
+void bitb2 (void){
+        PORTCbits.RC0 = 1;
+        _delay((unsigned long)((1.5)*(8000000/4000.0)));
+        PORTCbits.RC0 = 0;
+        _delay((unsigned long)((18.5)*(8000000/4000.0)));
+    }
+
+void bitb3 (void){
+        PORTCbits.RC0 = 1;
+        _delay((unsigned long)((2)*(8000000/4000.0)));
+        PORTCbits.RC0 = 0;
+        _delay((unsigned long)((18)*(8000000/4000.0)));
+    }

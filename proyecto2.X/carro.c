@@ -31,9 +31,37 @@ char value;
 
 // Funciones
 void setup(void);
+void bitb1(void);  //funciones para el bitbanging
+void bitb2(void);
+void bitb3(void);
 
 // Interrupciones
+void __interrupt() isr(void){
+    
+    if(PIR1bits.ADIF == 1){
+        if(ADCON0bits.CHS == 0){
+            CCPR1L = (ADRESH >> 1) + 124;
+        }    
+        else if(ADCON0bits.CHS == 1){ 
+            CCPR2L = (ADRESH >> 1) + 124;
+        }
+        else if (ADCON0bits.CHS == 2){
+               value = ADRESH;
+            if (value <= 85){
+                bitb1();
+                 }
+           if ((value <= 170)&&(value >= 86)){
+                bitb2();
+                 }
+            if (value >= 171){
+                bitb3();
+                 }
+        }   
+           PIR1bits.ADIF = 0; 
+    }
 
+
+}
 
 // Ciclo Principal
 void main (void){

@@ -97,9 +97,27 @@ void __interrupt() isr(void){
         INTCONbits.RBIF = 0;     // Se limpia la bandera
         
     }
+    
+    if (RCIF == 1) {
+        if (RCREG == 'w'){ 
+            bitb2();
+            __delay_ms(500);
+            printf("\r Avanzando \r");
+        }
+        if (RCREG == ''){ 
+        }
+        if (RCREG == ''){ 
+        }
+        if (RCREG == ''){ 
+        }
+        else{ 
+            NULL;//seguridad para que el usuario no ponga otras opciones  //seguridad para que el usuario no ponga otras opciones  
+        }  
+    } 
+        
+    }
 
 
-}
 
 // Ciclo Principal
 void main (void){

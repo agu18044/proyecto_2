@@ -28,6 +28,15 @@
 
 // Variables
 char value;
+char dato;
+char localidad;
+char lec1;
+char lec2; 
+char lec3;
+char lec4; 
+char lec5;
+char lec_pwm1;
+char lec_pwm2;
 
 // Funciones
 void setup(void);
@@ -59,6 +68,35 @@ void __interrupt() isr(void){
         }   
            PIR1bits.ADIF = 0; 
     }
+    
+    if (RBIF == 1){  // Bandera de puerto b
+        if (PORTBbits.RB1 == 0)   //revisa PB1
+        {
+            PORTDbits.RD0 = 0;    
+            PORTDbits.RD4 = 1;
+            PORTDbits.RD5 = 1;
+        }
+        else if (PORTBbits.RB1 == 1) 
+        {
+            PORTDbits.RD0 = 1;
+            PORTDbits.RD4 = 0;
+            PORTDbits.RD5 = 0;
+        }
+        if (PORTBbits.RB2 == 0)  //revisa PB2
+        {
+            PORTDbits.RD1 = 0;     
+            PORTDbits.RD6 = 1;
+            PORTDbits.RD7 = 1;
+        }
+        else if (PORTBbits.RB2 == 1)
+        {
+            PORTDbits.RD1 = 1;
+            PORTDbits.RD6 = 0;
+            PORTDbits.RD7 = 0;
+        } 
+        INTCONbits.RBIF = 0;     // Se limpia la bandera
+        
+    }
 
 
 }
@@ -66,11 +104,31 @@ void __interrupt() isr(void){
 // Ciclo Principal
 void main (void){
     setup();
-    while(1){
+    ADCON0bits.GO = 1;                      // Bit para que comience la conversion
+    PORTDbits.RD1 = 1;
+    printf("\r Presione w para avanzar \r");
     
+    while(1){
+        if (ADCON0bits.GO == 0){
+            if(ADCON0bits.CHS == 0){
+                ADCON0bits.CHS =1;
+            }
+            else if (ADCON0bits.CHS == 1){
+                ADCON0bits.CHS = 2;
+            }
+            else
+                ADCON0bits.CHS = 0;
+            __delay_us(50);
+            ADCON0bits.GO = 1;
+        }        
     }
 }
 
+void putch(char data){   //funcion de stdio.h
+    while(TXIF == 0);
+    TXREG = data;        //value que se muestra
+    return;
+}
 
 // Set up
 void setup(void){

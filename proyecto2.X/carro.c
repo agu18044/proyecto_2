@@ -27,7 +27,7 @@
 #include <xc.h>
 
 // Variables
-
+char value;
 
 // Funciones
 void setup(void);
